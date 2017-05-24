@@ -22,9 +22,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label col-md-5" for="payFor">Pay For</label>
-                            <input class="col-md-6"
-                                   type="text" id="payFor" ng-model="calCtrl.dto.payFor"/>
+                            <label class="control-label col-md-5" for="lease">Pay For</label>
+                            <select class="col-md-6" id="lease" ng-model="calCtrl.dto.leaseId"
+                                    ng-options="lease.id as lease.title for lease in calCtrl.allLeases"         ></select>
                         </div>
                     </div>
 
@@ -580,7 +580,7 @@
     </form>
 </div>
 
-<div class="panel panel-default" ng-show="calCtrl.dto.totalPerPerson > 0">
+<div class="panel panel-default" ng-show="calCtrl.dto.bill.amount > 0">
     <div class="panel-heading">Bill Details for {{calCtrl.dto.payer}}</div>
     
 			<table class="table table-bordered">
@@ -601,7 +601,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="item in calCtrl.dto.billItems">
+					<tr ng-repeat="item in calCtrl.dto.bill.billItems">
 						<td>{{item.title}}</td>
 						<td>{{item.totalAmount | currency }}</td>
 						<td>{{item.startDate | date: 'dd-MMM-yyyy'}}</td>

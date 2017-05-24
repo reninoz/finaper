@@ -1,5 +1,14 @@
-app.controller('CalculatorCtrl', function ($log, CalculatorService) {
+app.controller('CalculatorCtrl', function ($log, CalculatorService, LeaseService) {
     var self = this;
+
+    self.allLeases = [];
+    self.getAllLeases = function () {
+        LeaseService.allLeases()
+            .then(function (result) {
+                self.allLeases = (result !== 'null') ? result.data : [];
+            });
+    }
+    self.getAllLeases();
 
     self.calculate = function () {
        // $log.log(self.dto);
@@ -12,8 +21,8 @@ app.controller('CalculatorCtrl', function ($log, CalculatorService) {
 
     self.init = function() {
     	self.dto = {};
-    	self.dto.payFor = 'Dickson';
-    	self.dto.payer = 'Someone';
+    	// self.dto.payFor = 'Dickson';
+    	// self.dto.payer = 'Someone';
     	self.dto.numberOfPersonShareForWater = 5;
     	self.dto.numberOfPersonShareForElectrical = 5;
     	self.dto.numberOfPersonShareForGas = 5;

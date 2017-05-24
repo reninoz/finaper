@@ -1,6 +1,9 @@
 package com.zm.finaper;
 
+import com.zm.finaper.entity.Lease;
+import com.zm.finaper.entity.Person;
 import com.zm.finaper.entity.Property;
+import com.zm.finaper.utils.DateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.Date;
 
 /**
  * Created by wzhang on 24/05/2017.
@@ -33,6 +37,22 @@ public class DataInitializer {
             p.setNumOfBath(1);
             p.setNumOfRooms(5);
             session.persist(p);
+
+            Person tenant = new Person();
+            tenant.setLastName("Dooring");
+            tenant.setFirstName("Room" + i);
+            session.persist(tenant);
+
+            Lease lease = new Lease();
+            lease.setTitle("Dooring " + i);
+            lease.setTenant(tenant);
+            Date today = new Date();
+            lease.setStartDate(DateUtil.addDays(today, -120));
+            lease.setEndDate(DateUtil.addDays(today, 60));
+            lease.setProperty(p);
+            lease.setMonthlyRent(500);
+            lease.setLeaseType("Share");
+            session.persist(lease);
 
         }
 

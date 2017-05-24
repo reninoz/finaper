@@ -1,7 +1,9 @@
 package com.zm.finaper.dto;
 
 
+import com.zm.finaper.entity.Bill;
 import com.zm.finaper.entity.BillItem;
+import com.zm.finaper.entity.Lease;
 
 import java.util.Date;
 import java.util.List;
@@ -11,7 +13,9 @@ import java.util.List;
  */
 public class CalculateDTO {
 
-    private String payFor;
+//    private String payFor;
+    private Long leaseId;
+    private Lease lease;
     private String payer;
     private Date waterSupplyStartDate;
     private Date waterSupplyEndDate;
@@ -65,26 +69,52 @@ public class CalculateDTO {
 
     private double totalPerPerson;
 
-    private List<BillItem> billItems;
+    private Bill bill = new Bill();
+
+//    private List<BillItem> billItems;
 
     public CalculateDTO() {
+    }
+
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public Lease getLease() {
+        return lease;
+    }
+
+    public void setLease(Lease lease) {
+        this.lease = lease;
     }
 
     public String getPayer() {
         return payer;
     }
 
+    public Long getLeaseId() {
+        return leaseId;
+    }
+
+    public void setLeaseId(Long leaseId) {
+        this.leaseId = leaseId;
+    }
+
     public void setPayer(String payer) {
         this.payer = payer;
     }
 
-    public String getPayFor() {
+/*    public String getPayFor() {
         return payFor;
     }
 
     public void setPayFor(String payFor) {
         this.payFor = payFor;
-    }
+    }*/
 
     public Date getWaterSupplyStartDate() {
         return waterSupplyStartDate;
@@ -358,13 +388,13 @@ public class CalculateDTO {
         this.totalPerPerson = totalPerPerson;
     }
 
-    public List<BillItem> getBillItems() {
+/*    public List<BillItem> getBillItems() {
         return billItems;
     }
 
     public void setBillItems(List<BillItem> billItems) {
         this.billItems = billItems;
-    }
+    }*/
 
 	public Date getConsumStartDateAbsent() {
 		return consumStartDateAbsent;

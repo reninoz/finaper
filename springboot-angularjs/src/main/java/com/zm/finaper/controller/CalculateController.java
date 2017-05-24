@@ -23,9 +23,8 @@ public class CalculateController {
     @RequestMapping(value = "/calculate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public CalculateDTO calculate(@RequestBody CalculateDTO dto) {
-        dto.setPayFor("set value");
-        dto.setTotalPerPerson(2);
-        dto.setBillItems(calculateService.calculateBill(dto));
+        dto.setBill(calculateService.calculateBill(dto));
+        dto.setPayer("Changed Payer");
         return dto;
     }
 }

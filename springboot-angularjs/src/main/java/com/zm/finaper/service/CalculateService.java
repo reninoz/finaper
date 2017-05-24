@@ -1,6 +1,7 @@
 package com.zm.finaper.service;
 
 import com.zm.finaper.dto.CalculateDTO;
+import com.zm.finaper.entity.Bill;
 import com.zm.finaper.entity.BillItem;
 import com.zm.finaper.utils.DateUtil;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ import java.util.List;
 @Service
 public class CalculateService {
 
-	public List<BillItem> calculateBill(CalculateDTO dto) {
+	public Bill calculateBill(CalculateDTO dto) {
+		Bill bill = new Bill();
 		List<BillItem> results = new ArrayList();
 		results.add(calculateElecSupply(dto));
 		results.add(calculateElecConsum(dto));
@@ -25,7 +27,14 @@ public class CalculateService {
 		results.add(calculateGasSupply(dto));
 		results.add(calculateGasConsum(dto));
 
-		return results;
+		double totalAmount = 0;
+		for(BillItem item : results) {
+			totalAmount += item.getTotalAmount();
+		}
+
+		bill.setAmount(totalAmount);
+		bill.setBillItems(results);
+		return bill;
 	}
 
 	private BillItem calculateElecSupply(CalculateDTO dto) {

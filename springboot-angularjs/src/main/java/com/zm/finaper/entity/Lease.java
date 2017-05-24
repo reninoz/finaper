@@ -12,6 +12,7 @@ import java.util.Date;
 @Table(name = "LEASES")
 public class Lease extends AbstractEntity {
 
+    private String title;
     private Date startDate;
     private Date endDate;
     private Date dateSigned;
@@ -29,6 +30,14 @@ public class Lease extends AbstractEntity {
     private boolean valid;
 
     public Lease() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getStartDate() {
