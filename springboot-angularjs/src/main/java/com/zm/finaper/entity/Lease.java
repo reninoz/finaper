@@ -17,6 +17,9 @@ public class Lease extends AbstractEntity {
     private Date dateSigned;
     @ManyToOne
     private Person tenant;
+    @ManyToOne
+    private Property property;
+
     private double bound;
     private double monthlyRent;
     private boolean internetIncluded = true;
@@ -114,5 +117,13 @@ public class Lease extends AbstractEntity {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
     }
 }
