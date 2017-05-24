@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by wzhang on 19/05/2017.
  */
 @Entity
-@Table(name = "BILL_ITEM")
+@Table(name = "BILL_ITEMS")
 public class BillItem  extends AbstractEntity {
 
     private String title;

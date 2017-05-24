@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class PropertyController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Property> getAllProperties() {
+    public Iterable<Property> getAllProperties() {
         return propertyService.getAllProperties();
     }
 

@@ -1,9 +1,12 @@
 package com.zm.finaper.service;
 
+import com.zm.finaper.dao.PropertyRepository;
 import com.zm.finaper.entity.Property;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -12,8 +15,12 @@ import java.util.List;
 @Service
 public class PropertyService {
 
-    public List<Property> getAllProperties() {
-        return getSampleData();
+    @Autowired
+    private PropertyRepository propertyRepository;
+
+    public Iterable<Property> getAllProperties() {
+        return propertyRepository.findAll();
+//        return getSampleData();
     }
 
     private List<Property> getSampleData() {
