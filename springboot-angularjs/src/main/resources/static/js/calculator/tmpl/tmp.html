@@ -1,0 +1,132 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Gas</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-5" for="gasSupplyStartDate">
+                        Supply Start Date</label>
+                    <p class="input-group col-md-6">
+                        <input type="text" class="form-control"
+                               id="gasSupplyStartDate"
+                               uib-datepicker-popup="{{calCtrl.format}}"
+                               ng-model="calCtrl.dto.gasSupplyStartDate"
+                               is-open="calCtrl.gasSupplyStartDatePopup.opened"
+                               datepicker-options="calCtrl.dateOptions" ng-required="true"
+                               close-text="Close" alt-input-formats="calCtrl.altInputFormats"/>
+                        <span class="input-group-btn">
+									<button type="button" class="btn btn-default"
+                                            ng-click="calCtrl.openGasSupplyStartDate()">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-5" for="gasSupplyEndDate">Supply
+                        End Date</label>
+                    <p class="input-group col-md-6">
+                        <input type="text" class="form-control" id="gasSupplyEndDate"
+                               uib-datepicker-popup="{{calCtrl.format}}"
+                               ng-model="calCtrl.dto.gasSupplyEndDate"
+                               is-open="calCtrl.gasSupplyEndDatePopup.opened"
+                               datepicker-options="calCtrl.dateOptions" ng-required="true"
+                               close-text="Close" alt-input-formats="calCtrl.altInputFormats"/>
+                        <span class="input-group-btn">
+									<button type="button" class="btn btn-default"
+                                            ng-click="calCtrl.openGasSupplyEndDate()">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-5" for="gasConsumStartDate">
+                        Consumption Start Date</label>
+                    <p class="input-group col-md-6">
+                        <input type="text" class="form-control"
+                               id="gasConsumStartDate"
+                               uib-datepicker-popup="{{calCtrl.format}}"
+                               ng-model="calCtrl.dto.gasConsumStartDate"
+                               is-open="calCtrl.gasConsumStartDatePopup.opened"
+                               datepicker-options="calCtrl.dateOptions" ng-required="true"
+                               close-text="Close" alt-input-formats="calCtrl.altInputFormats"/>
+                        <span class="input-group-btn">
+									<button type="button" class="btn btn-default"
+                                            ng-click="calCtrl.openGasConsumStartDate()">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-5" for="gasConsumEndDate">
+                        Consumption End Date</label>
+                    <p class="input-group col-md-6">
+                        <input type="text" class="form-control" id="gasConsumEndDate"
+                               uib-datepicker-popup="{{calCtrl.format}}"
+                               ng-model="calCtrl.dto.gasConsumEndDate"
+                               is-open="calCtrl.gasConsumEndDatePopup.opened"
+                               datepicker-options="calCtrl.dateOptions" ng-required="true"
+                               close-text="Close" alt-input-formats="calCtrl.altInputFormats"/>
+                        <span class="input-group-btn">
+									<button type="button" class="btn btn-default"
+                                            ng-click="calCtrl.openGasConsumEndDate()">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-5" for="gasSupplyAmount">
+                        Supply Amount
+                    </label>
+                    <input type="number" id="gasSupplyAmount"
+                           class="col-md-6"
+                           ng-model="calCtrl.dto.gasSupplyAmount"
+                           ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"
+                           required
+                    />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-5" for="gasSupplyAmount">
+                        Consumption Amount
+                    </label>
+                    <input type="number" id="gasConsumAmount"
+                           class="col-md-6"
+                           ng-model="calCtrl.dto.gasConsumAmount"
+                           ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"
+                           required
+                    />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
