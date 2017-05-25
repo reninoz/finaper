@@ -22,17 +22,21 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label col-md-5" for="lease">Pay For</label>
-                            <select class="col-md-6" id="lease" ng-model="calCtrl.dto.leaseId"
-                                    ng-options="lease.id as lease.title for lease in calCtrl.allLeases"         ></select>
+                            <label class="control-label col-md-5" for="lease">Lease</label>
+                            <select class="col-md-6" id="lease" ng-model="calCtrl.dto.lease"
+                                    ng-options="lease.title group by lease.property.hostProperty.title
+                                    for lease in calCtrl.allLeases track by lease.id"></select>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label col-md-5" for="payer">Payer</label>
-                            <input class="col-md-6"
-                                   type="text" id="payer" ng-model="calCtrl.dto.payer"/>
+                            <label class="control-label col-md-5"
+                                   for="numberOfPersonShareForGas">Number of Person (Gas)</label>
+                            <input type="number" id="numberOfPersonShareForGas"
+                                   ng-model="calCtrl.dto.numberOfPersonShareForGas"
+                                   step="1" min="1" max="20" ng-pattern="/^[0-9]*$/" class="col-md-6"
+                                   required>
                         </div>
                     </div>
                 </div>
@@ -61,7 +65,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label col-md-5"
@@ -75,7 +79,7 @@
 
                     <div class="col-md-6">
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
 
@@ -581,7 +585,7 @@
 </div>
 
 <div class="panel panel-default" ng-show="calCtrl.dto.bill.amount > 0">
-    <div class="panel-heading">Bill Details for {{calCtrl.dto.payer}}</div>
+    <div class="panel-heading">Bill Details for {{calCtrl.dto.lease.title}}</div>
     
 			<table class="table table-bordered">
 				<thead>

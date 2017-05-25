@@ -1,7 +1,6 @@
 package com.zm.finaper.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -17,7 +16,9 @@ public class Property  extends AbstractEntity {
     private String description;
     private int numOfBath;
     private int numOfRooms;
-    private boolean isShare = true;
+    private boolean isRoom = true;
+    @ManyToOne
+    private Property hostProperty; //the property having the rooms
 
 //    private List<Room> rooms;
 
@@ -30,6 +31,14 @@ public class Property  extends AbstractEntity {
         this.address = address;
         this.description = description;
         this.numOfRooms = numOfRooms;
+    }
+
+    public Property getHostProperty() {
+        return hostProperty;
+    }
+
+    public void setHostProperty(Property hostProperty) {
+        this.hostProperty = hostProperty;
     }
 
     public String getType() {
@@ -80,12 +89,12 @@ public class Property  extends AbstractEntity {
         this.rooms = rooms;
     }*/
 
-    public boolean isShare() {
-        return isShare;
+    public boolean isRoom() {
+        return isRoom;
     }
 
-    public void setShare(boolean share) {
-        isShare = share;
+    public void setRoom(boolean room) {
+        isRoom = room;
     }
 
     public int getNumOfBath() {
