@@ -10,7 +10,8 @@ import java.util.List;
 @Table(name = "PROPERTIES")
 public class Property  extends AbstractEntity {
 
-    private String type;
+    @ManyToOne
+    private Lookup type;
     private String title;
     private String address;
     private String description;
@@ -25,12 +26,12 @@ public class Property  extends AbstractEntity {
     public Property() {
     }
 
-    public Property(String type, String title, String address, String description, int numOfRooms) {
+    public Lookup getType() {
+        return type;
+    }
+
+    public void setType(Lookup type) {
         this.type = type;
-        this.title = title;
-        this.address = address;
-        this.description = description;
-        this.numOfRooms = numOfRooms;
     }
 
     public Property getHostProperty() {
@@ -39,14 +40,6 @@ public class Property  extends AbstractEntity {
 
     public void setHostProperty(Property hostProperty) {
         this.hostProperty = hostProperty;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getTitle() {

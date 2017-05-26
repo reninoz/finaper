@@ -52,10 +52,51 @@ public class DataInitializer {
 
         initLookups(session);
 
+        LookupType leaseLookupType = new LookupType();
+        leaseLookupType.setCode("lease_type");
+        leaseLookupType.setDescription("Lease Type");
+        session.persist(leaseLookupType);
+
+        Lookup shareLooku = new Lookup();
+        shareLooku.setLookupType(leaseLookupType);
+        shareLooku.setCode("share");
+        shareLooku.setDescription("Share");
+        session.persist(shareLooku);
+
+        Lookup rentLooku = new Lookup();
+        rentLooku.setLookupType(leaseLookupType);
+        rentLooku.setCode("rent");
+        rentLooku.setDescription("Rent");
+        session.persist(rentLooku);
+
+
+        LookupType propertyLookupType = new LookupType();
+        propertyLookupType.setCode("property_type");
+        propertyLookupType.setDescription("Property Type");
+        session.persist(propertyLookupType);
+
+        Lookup houselk = new Lookup();
+        houselk.setLookupType(propertyLookupType);
+        houselk.setCode("house");
+        houselk.setDescription("House");
+        session.persist(houselk);
+
+        Lookup grannylk = new Lookup();
+        grannylk.setLookupType(propertyLookupType);
+        grannylk.setCode("granny_flat");
+        grannylk.setDescription("Grany Flat");
+        session.persist(grannylk);
+
+        Lookup flatlk = new Lookup();
+        flatlk.setLookupType(propertyLookupType);
+        flatlk.setCode("flat");
+        flatlk.setDescription("flat");
+        session.persist(flatlk);
+
         for (int i=1; i<6; i++) {
             Property p = new Property();
             p.setTitle("Room" + i +" at Dooring St");
-            p.setType("House");
+            p.setType(houselk);
             p.setAddress("64 Dooring Street, Dickson, ACT, 2602");
             p.setRoom(true);
             p.setNumOfBath(1);
@@ -75,7 +116,8 @@ public class DataInitializer {
             lease.setEndDate(DateUtil.addDays(today, 60));
             lease.setProperty(p);
             lease.setMonthlyRent(500);
-            lease.setLeaseType("Share");
+//            lease.setLeaseType("Share");
+            lease.setLeaseLookup(shareLooku);
             session.persist(lease);
 
         }
@@ -83,7 +125,7 @@ public class DataInitializer {
         for (int i=1; i<6; i++) {
             Property p = new Property();
             p.setTitle("Room" + i +" at Unit 1 Cowper St");
-            p.setType("House");
+            p.setType(houselk);
             p.setAddress("1/7 Cowper St, Ainslie, ACT, 2602");
             p.setNumOfBath(1);
 
@@ -94,7 +136,7 @@ public class DataInitializer {
         for (int i=1; i<6; i++) {
             Property p = new Property();
             p.setTitle("Room" + i +" at Unit 2 Cowper St");
-            p.setType("House");
+            p.setType(houselk);
             p.setAddress("2/7 Cowper St, Ainslie, ACT, 2602");
             p.setNumOfBath(2);
             p.setRoom(true);
@@ -114,7 +156,8 @@ public class DataInitializer {
             lease.setEndDate(DateUtil.addDays(today, 60));
             lease.setProperty(p);
             lease.setMonthlyRent(500);
-            lease.setLeaseType("Share");
+//            lease.setLeaseType("Share");
+            lease.setLeaseLookup(shareLooku);
             session.persist(lease);
 
         }

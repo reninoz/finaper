@@ -29,6 +29,9 @@ public class Lease extends AbstractEntity {
     private String leaseType;  // share or rent
     private boolean valid;
 
+    @ManyToOne
+    private Lookup leaseLookup;
+
     public Lease() {
     }
 
@@ -134,5 +137,13 @@ public class Lease extends AbstractEntity {
 
     public void setProperty(Property property) {
         this.property = property;
+    }
+
+    public Lookup getLeaseLookup() {
+        return leaseLookup;
+    }
+
+    public void setLeaseLookup(Lookup leaseLookup) {
+        this.leaseLookup = leaseLookup;
     }
 }
