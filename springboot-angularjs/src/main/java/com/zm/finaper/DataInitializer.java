@@ -1,8 +1,6 @@
 package com.zm.finaper;
 
-import com.zm.finaper.entity.Lease;
-import com.zm.finaper.entity.Person;
-import com.zm.finaper.entity.Property;
+import com.zm.finaper.entity.*;
 import com.zm.finaper.utils.DateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,15 +29,28 @@ public class DataInitializer {
 
         Property dooringHouse = new Property();
         dooringHouse.setTitle("Dooring House");
+        dooringHouse.setAddress("64 Dooring Street, Dickson, ACT, 2602");
         dooringHouse.setRoom(false);
         dooringHouse.setNumOfRooms(5);
         session.persist(dooringHouse);
 
+        Property cowper1House = new Property();
+        cowper1House.setTitle("Cowper1 House");
+        cowper1House.setAddress("1/7 Cowper St, Ainslie, ACT, 2602");
+        cowper1House.setRoom(false);
+        cowper1House.setNumOfRooms(5);
+        cowper1House.setNumOfBath(1);
+        session.persist(cowper1House);
+
         Property cowper2House = new Property();
         cowper2House.setTitle("Cowper2 House");
+        cowper2House.setAddress("2/7 Cowper St, Ainslie, ACT, 2602");
         cowper2House.setRoom(false);
         cowper2House.setNumOfRooms(5);
+        cowper2House.setNumOfBath(2);
         session.persist(cowper2House);
+
+        initLookups(session);
 
         for (int i=1; i<6; i++) {
             Property p = new Property();
@@ -109,6 +120,25 @@ public class DataInitializer {
         }
 
         transaction.commit();
+    }
+
+    private void initLookups(Session session) {
+        LookupType payType = new LookupType();
+        payType.setCode("payment_type");
+        payType.setDescription("Payment Type");
+        session.persist(payType);
+
+        Lookup cashPayLookup= new Lookup();
+        cashPayLookup.setCode("cash");
+        cashPayLookup.setDescription("Cash");
+        cashPayLookup.setLookupType(payType);
+        session.persist(cashPayLookup);
+
+        Lookup bankTransferLookup= new Lookup();
+        bankTransferLookup.setCode("bank_transfer");
+        bankTransferLookup.setDescription("Bank Transfer");
+        bankTransferLookup.setLookupType(payType);
+        session.persist(bankTransferLookup);
     }
 
 }
