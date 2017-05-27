@@ -6,6 +6,10 @@ app.config(function($routeProvider){
             controller: 'LeaseController'
             // controllerAs: 'propCtrl'
         })
+        .when('/lease/:leaseId',{
+            templateUrl: '/js/lease/tmpl/lease.html',
+            controller: 'LeaseInfoController'
+        })
         .when('/properties',{
             templateUrl: '/js/property/tmpl/properties.html',
             controller: 'PropertyController'

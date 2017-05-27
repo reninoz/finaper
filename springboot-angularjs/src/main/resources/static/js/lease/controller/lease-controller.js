@@ -10,4 +10,5 @@ app.controller('LeaseController', ['LeaseService', function (LeaseService) {
             });
     }
     self.getAllLease();
+
 }]);

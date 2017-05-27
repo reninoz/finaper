@@ -1,0 +1,103 @@
+<div class="col-md-12" ng-controller="LeaseInfoController as leaseInfoCtrl">
+    <div class="panel panel-default col-md-12">
+        <div class="panel-heading">Lease {{leaseInfoCtrl.leaseDto.lease.title}}</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="pane panel-default col-md-6">
+                    <table class="table table-bordered table-striped">
+                        <thead class="header-panel">
+                            Lease Details
+                        </thead>
+                       <tbody>
+                        <tr>
+                            <td>
+                                    Title
+                            </td>
+                            <td>
+                                {{leaseInfoCtrl.leaseDto.lease.title}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Start Date
+                            </td>
+                            <td>
+                                {{leaseInfoCtrl.leaseDto.lease.startDate | date: 'dd-MMM-yyyy'}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    End Date
+                            </td>
+                            <td>
+                                {{leaseInfoCtrl.leaseDto.lease.endDate | date: 'dd-MMM-yyyy'}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Monthly Rental
+                            </td>
+                            <td>
+                                {{leaseInfoCtrl.leaseDto.lease.monthlyRent | currency }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Lease Type
+                            </td>
+                            <td>
+                                {{leaseInfoCtrl.leaseDto.lease.leaseLookup.description}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Bond
+                            </td>
+                            <td>
+                                {{leaseInfoCtrl.leaseDto.lease.monthlyRent | currency }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Date Signed
+                            </td>
+                            <td>
+                                {{leaseInfoCtrl.leaseDto.lease.dateSigned | date: 'dd-MMM-yyyy'}}
+                            </td>
+                        </tr>
+                       </tbody>
+                    </table>
+                    <!--<div class="panel-heading">
+                        Lease Information
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
+                <div class="pane panel-default col-md-6">
+                   <!-- <div class="panel-heading">
+                        Lease Payment Records
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

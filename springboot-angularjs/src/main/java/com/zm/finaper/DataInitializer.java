@@ -50,7 +50,22 @@ public class DataInitializer {
         cowper2House.setNumOfBath(2);
         session.persist(cowper2House);
 
-        initLookups(session);
+        LookupType payType = new LookupType();
+        payType.setCode("payment_type");
+        payType.setDescription("Payment Type");
+        session.persist(payType);
+
+        Lookup cashPayLookup= new Lookup();
+        cashPayLookup.setCode("cash");
+        cashPayLookup.setDescription("Cash");
+        cashPayLookup.setLookupType(payType);
+        session.persist(cashPayLookup);
+
+        Lookup bankTransferLookup= new Lookup();
+        bankTransferLookup.setCode("bank_transfer");
+        bankTransferLookup.setDescription("Bank Transfer");
+        bankTransferLookup.setLookupType(payType);
+        session.persist(bankTransferLookup);
 
         LookupType leaseLookupType = new LookupType();
         leaseLookupType.setCode("lease_type");
@@ -119,6 +134,14 @@ public class DataInitializer {
 //            lease.setLeaseType("Share");
             lease.setLeaseLookup(shareLooku);
             session.persist(lease);
+
+            Rental rental = new Rental();
+            rental.setTitle("Rental of Room " + i);
+            rental.setAmount(500);
+            rental.setDatePaid(DateUtil.addDays(today, -5));
+            rental.setPaymentType(cashPayLookup);
+            rental.setLease(lease);
+            session.persist(rental);
 
         }
 

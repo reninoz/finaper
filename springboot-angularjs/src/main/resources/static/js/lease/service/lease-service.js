@@ -1,4 +1,4 @@
-app.service('LeaseService', ['$http',function ($http) {
+app.service('LeaseService', ['$http', function ($http) {
         var self = this;
 
         self.allLeases = function () {
@@ -7,6 +7,14 @@ app.service('LeaseService', ['$http',function ($http) {
                 .then(function (response) {
                     return response;
                 });
+        };
+
+        self.leaseAndRelatedRental = function (leaseId) {
+            console.log('get lease and rental');
+            return $http.get('/lease/' + leaseId)
+                    then(function (response) {
+                        return response;
+                    });
         };
 
     }
