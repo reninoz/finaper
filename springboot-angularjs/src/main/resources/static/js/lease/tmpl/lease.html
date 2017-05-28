@@ -1,17 +1,16 @@
 <div class="col-md-12" ng-controller="LeaseInfoController as leaseInfoCtrl">
     <div class="panel panel-default col-md-12">
-        <div class="panel-heading">Lease {{leaseInfoCtrl.leaseDto.lease.title}}</div>
+
         <div class="panel-body">
             <div class="row">
-                <div class="pane panel-default col-md-6">
+                <div class="pane panel-default col-md-4">
+                    <div class="panel-heading"><strong>Lease Details</strong></div>
                     <table class="table table-bordered table-striped">
-                        <thead class="header-panel">
-                            Lease Details
-                        </thead>
-                       <tbody>
+
+                        <tbody>
                         <tr>
                             <td>
-                                    Title
+                                <strong>Title</strong>
                             </td>
                             <td>
                                 {{leaseInfoCtrl.leaseDto.lease.title}}
@@ -19,7 +18,7 @@
                         </tr>
                         <tr>
                             <td>
-                                    Start Date
+                                <strong>Start Date</strong>
                             </td>
                             <td>
                                 {{leaseInfoCtrl.leaseDto.lease.startDate | date: 'dd-MMM-yyyy'}}
@@ -27,7 +26,7 @@
                         </tr>
                         <tr>
                             <td>
-                                    End Date
+                                <strong>End Date</strong>
                             </td>
                             <td>
                                 {{leaseInfoCtrl.leaseDto.lease.endDate | date: 'dd-MMM-yyyy'}}
@@ -35,7 +34,7 @@
                         </tr>
                         <tr>
                             <td>
-                                    Monthly Rental
+                                <strong>Monthly Rental</strong>
                             </td>
                             <td>
                                 {{leaseInfoCtrl.leaseDto.lease.monthlyRent | currency }}
@@ -43,7 +42,7 @@
                         </tr>
                         <tr>
                             <td>
-                                    Lease Type
+                                <strong>Lease Type</strong>
                             </td>
                             <td>
                                 {{leaseInfoCtrl.leaseDto.lease.leaseLookup.description}}
@@ -51,7 +50,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Bond
+                                <strong>Bond</strong>
                             </td>
                             <td>
                                 {{leaseInfoCtrl.leaseDto.lease.monthlyRent | currency }}
@@ -59,45 +58,108 @@
                         </tr>
                         <tr>
                             <td>
-                                Date Signed
+                                <strong>Date Signed</strong>
                             </td>
                             <td>
                                 {{leaseInfoCtrl.leaseDto.lease.dateSigned | date: 'dd-MMM-yyyy'}}
                             </td>
                         </tr>
-                       </tbody>
+                        </tbody>
                     </table>
-                    <!--<div class="panel-heading">
-                        Lease Information
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
 
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
 
-                <div class="pane panel-default col-md-6">
-                   <!-- <div class="panel-heading">
-                        Lease Payment Records
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
+                <div class="pane panel-default col-md-8">
+                    <div class="panel-heading"><strong>Rental Records</strong></div>
+                    <table class="table table-bordered  table-striped col-md-12">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Date Paid</th>
+                            <th>Payment Type</th>
+                            <th>Amount Paid</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="rental in leaseInfoCtrl.leaseDto.rentals">
+                            <td>{{rental.title}}</td>
+                            <td>{{rental.description}}</td>
+                            <td>{{rental.datePaid | date: 'dd-MMM-yyyy'}}</td>
+                            <td>{{rental.paymentType.description | date: 'dd-MMM-yyyy'}}</td>
+                            <td>{{rental.amount | currency}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td colspan="2">
+                                Cash Payment : {{leaseInfoCtrl.leaseDto.totalAmountOfCash}}
+                            </td>
+                            <td colspan="2">
+                                Other Payment : {{leaseInfoCtrl.leaseDto.totalAmountOfBankTransfer}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!--row-->
 
+            <div class="row">
+                <form class="form-horizontal" ng-submit="leaseInfoCtrl.addNewRentalPayment()">
+                    <div class="pane panel-default col-md-12">
+                        <div class="panel-heading"><strong>Add Rental Payment</strong></div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-5" for="newRentalDatePaid">
+                                            Date Paid</label>
+                                        <p class="input-group col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="newRentalDatePaid"
+                                                   uib-datepicker-popup="{{leaseInfoCtrl.format}}"
+                                                   ng-model="leaseInfoCtrl.dto.newRental.datePaid"
+                                                   is-open="leaseInfoCtrl.newRentalDatePaidPopup.opened"
+                                                   datepicker-options="leaseInfoCtrl.dateOptions" ng-required="true"
+                                                   close-text="Close" alt-input-formats="leaseInfoCtrl.altInputFormats"/>
+                                            <span class="input-group-btn">
+									<button type="button" class="btn btn-default"
+                                            ng-click="leaseInfoCtrl.openNewRentalDatePaid()">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+                                        </p>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-2">Amount</div>
+                                <div class="col-md-4">
+                                    <input type="number" id="newPaymentAmount"
+                                           class="col-md-6"
+                                           ng-model="leaseInfoCtrl.dto.newRental.amount"
+                                           ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"
+                                           required
+                                    />
+                                </div>
                             </div>
-                            <div class="col-md-6">
 
+                            <div class="row">
+                                <div class="col-md-2">Payment Type</div>
+                                <div class="col-md-4">
+
+                                </div>
+
+                                <div class="col-md-2">Description</div>
+                                <div class="col-md-4">description input</div>
                             </div>
                         </div>
-                    </div>-->
-                </div>
+                    </div>
+                </form>
             </div>
-        </div>
+
+        </div><!--row-->
     </div>
+</div>
 </div>

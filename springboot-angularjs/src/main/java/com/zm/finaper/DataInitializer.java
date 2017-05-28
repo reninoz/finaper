@@ -135,13 +135,21 @@ public class DataInitializer {
             lease.setLeaseLookup(shareLooku);
             session.persist(lease);
 
-            Rental rental = new Rental();
-            rental.setTitle("Rental of Room " + i);
-            rental.setAmount(500);
-            rental.setDatePaid(DateUtil.addDays(today, -5));
-            rental.setPaymentType(cashPayLookup);
-            rental.setLease(lease);
-            session.persist(rental);
+            for (int n =1 ; n < 5; n++) {
+                Rental rental = new Rental();
+                rental.setTitle("Rental of Room " + i);
+
+                rental.setDatePaid(DateUtil.addDays(today, -(n*30)));
+                if (n%2==0) {
+                    rental.setPaymentType(cashPayLookup);
+                    rental.setAmount(500);
+                } else {
+                    rental.setPaymentType(bankTransferLookup);
+                    rental.setAmount(520);
+                }
+                rental.setLease(lease);
+                session.persist(rental);
+            }
 
         }
 
