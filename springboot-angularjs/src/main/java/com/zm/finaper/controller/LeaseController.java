@@ -1,16 +1,19 @@
 package com.zm.finaper.controller;
 
+import com.zm.finaper.dto.CalculateDTO;
 import com.zm.finaper.dto.LeaseDTO;
 import com.zm.finaper.entity.Lease;
 import com.zm.finaper.entity.Property;
 import com.zm.finaper.service.LeaseService;
 import com.zm.finaper.service.PropertyService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,5 +40,12 @@ public class LeaseController {
     public LeaseDTO getLeaseAndRelatedInfo(@PathVariable Long leaseId) {
         logger.debug("Retriving lease and related info for lease {}", leaseId);
         return leaseService.findLeaseAndRelatedInfo(leaseId);
+    }
+    
+    @RequestMapping(value = "/newRental", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public LeaseDTO calculate(@RequestBody LeaseDTO dto) {
+    	logger.debug("add new rental lease {}", dto.getLease().getTitle());
+        return dto;
     }
 }

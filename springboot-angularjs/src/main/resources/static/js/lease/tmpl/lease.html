@@ -75,19 +75,20 @@
                         <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Description</th>
                             <th>Date Paid</th>
                             <th>Payment Type</th>
                             <th>Amount Paid</th>
+                            <th>Description</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="rental in leaseInfoCtrl.leaseDto.rentals">
                             <td>{{rental.title}}</td>
-                            <td>{{rental.description}}</td>
+                            
                             <td>{{rental.datePaid | date: 'dd-MMM-yyyy'}}</td>
                             <td>{{rental.paymentType.description | date: 'dd-MMM-yyyy'}}</td>
                             <td>{{rental.amount | currency}}</td>
+                            <td>{{rental.description}}</td>
                         </tr>
                         <tr>
                             <td>Total</td>
@@ -110,15 +111,15 @@
                         <div class="panel-body">
                             <div class="row">
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="control-label col-md-5" for="newRentalDatePaid">
+                                        <label class="control-label col-md-4" for="newRentalDatePaid">
                                             Date Paid</label>
                                         <p class="input-group col-md-6">
                                             <input type="text" class="form-control"
                                                    id="newRentalDatePaid"
                                                    uib-datepicker-popup="{{leaseInfoCtrl.format}}"
-                                                   ng-model="leaseInfoCtrl.dto.newRental.datePaid"
+                                                   ng-model="leaseInfoCtrl.leaseDto.newRental.datePaid"
                                                    is-open="leaseInfoCtrl.newRentalDatePaidPopup.opened"
                                                    datepicker-options="leaseInfoCtrl.dateOptions" ng-required="true"
                                                    close-text="Close" alt-input-formats="leaseInfoCtrl.altInputFormats"/>
@@ -134,25 +135,44 @@
                                 </div>
 
 
-                                <div class="col-md-2">Amount</div>
                                 <div class="col-md-4">
+                                <div class="form-group">
+                                <label class="control-label col-md-4" for="newRentalPaymentType">Amount</label>
                                     <input type="number" id="newPaymentAmount"
                                            class="col-md-6"
-                                           ng-model="leaseInfoCtrl.dto.newRental.amount"
+                                           ng-model="leaseInfoCtrl.leaseDto.newRental.amount"
                                            ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"
+                                           ng-min="0"
                                            required
                                     />
                                 </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="newRentalPaymentType">Payment Type</label>
+                            <select class="col-md-6" id="newRentalPaymentType" 
+                            ng-model="leaseInfoCtrl.leaseDto.newRental.paymentType"
+                                    ng-options="type.description for type in leaseInfoCtrl.leaseDto.paymentTypes track by type.id"></select>
+                        </div>
+                    </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-2">Payment Type</div>
-                                <div class="col-md-4">
-
-                                </div>
-
-                                <div class="col-md-2">Description</div>
-                                <div class="col-md-4">description input</div>
+                                
+								<div class="form-group">
+								 <label class="control-label col-md-2" for="newRentalDescription">Description</label>
+                                                               
+                                <input type="text"  class="col-md-8" id="newRentalDescription" 
+                                ng-model="leaseInfoCtrl.leaseDto.newRental.description"
+                                />
+								</div>
+                            </div>
+                            
+                            <div class="row">
+                            <div class="form-group">
+                            <input type="submit" value="Add Payment"/>
+                            </div>
                             </div>
                         </div>
                     </div>

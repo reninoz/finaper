@@ -24,7 +24,7 @@ app.controller('LeaseInfoController', ['LeaseService', '$routeParams', function 
         // dateDisabled: disabled,
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
-        minDate: new Date(),
+//        minDate: new Date(),
         startingDay: 1
     };
 

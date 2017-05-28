@@ -1,6 +1,7 @@
 package com.zm.finaper.dto;
 
 import com.zm.finaper.entity.Lease;
+import com.zm.finaper.entity.Lookup;
 import com.zm.finaper.entity.Rental;
 
 /**
@@ -14,6 +15,8 @@ public class LeaseDTO {
 
     //for new payment
     private Rental newRental = new Rental();
+    
+    private Iterable<Lookup> paymentTypes;
 
     public LeaseDTO() {
     }
@@ -59,4 +62,14 @@ public class LeaseDTO {
     public void setNewRental(Rental newRental) {
         this.newRental = newRental;
     }
+
+	public Iterable<Lookup> getPaymentTypes() {
+		return paymentTypes;
+	}
+
+	public void setPaymentTypes(Iterable<Lookup> paymentTypes) {
+		this.paymentTypes = paymentTypes;
+	}
+    
+    
 }
