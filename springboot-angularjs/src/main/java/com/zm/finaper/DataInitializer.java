@@ -136,7 +136,7 @@ public class DataInitializer {
             lease.setLeaseLookup(shareLooku);
             session.persist(lease);
 
-            for (int n =1 ; n < 5; n++) {
+            for (int n =1 ; n < 13; n++) {
                 Rental rental = new Rental();
                 rental.setTitle("Rental of Room " + i);
 
