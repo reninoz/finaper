@@ -40,5 +40,9 @@ public class LeaseService {
         dto.setPaymentTypes(paymentTypes);
         return dto;
     }
+
+    public Rental addRentalPayment(Rental rental) {
+        return rentalRepository.save(rental);
+    }
 }
 

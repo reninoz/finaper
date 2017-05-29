@@ -4,6 +4,7 @@ import com.zm.finaper.dto.CalculateDTO;
 import com.zm.finaper.dto.LeaseDTO;
 import com.zm.finaper.entity.Lease;
 import com.zm.finaper.entity.Property;
+import com.zm.finaper.entity.Rental;
 import com.zm.finaper.service.LeaseService;
 import com.zm.finaper.service.PropertyService;
 
@@ -42,10 +43,13 @@ public class LeaseController {
         return leaseService.findLeaseAndRelatedInfo(leaseId);
     }
     
-    @RequestMapping(value = "/newRental", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/addRentalPayment", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public LeaseDTO calculate(@RequestBody LeaseDTO dto) {
     	logger.debug("add new rental lease {}", dto.getLease().getTitle());
-        return dto;
+    	Rental newRental = dto.getNewRental();
+    	newRental.setLease(dto.getLease());
+        leaseService.addRentalPayment(newRental);
+        return leaseService.findLeaseAndRelatedInfo(dto.getLease().getId());
     }
 }

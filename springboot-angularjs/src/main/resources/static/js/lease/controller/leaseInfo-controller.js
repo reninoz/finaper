@@ -1,6 +1,24 @@
 app.controller('LeaseInfoController', ['LeaseService', '$routeParams', function (LeaseService, $routeParams) {
     var self = this;
-    self.leaseDto = null;
+
+    self.showNewRental = false;
+
+    self.toggleNewRentalPanel = function () {
+        console.log('toggleNewRentalPanel .......showNewRental = ' + self.showNewRental)
+        self.showNewRental = !self.showNewRental;
+        if(self.showNewRental) {
+            self.setNewRetalDefaultValues();
+        }
+    }
+
+    //set default values for new rental payment
+    self.setNewRetalDefaultValues = function() {
+        self.leaseDto.newRental = {};
+        self.leaseDto.newRental.title = 'Rental';
+        self.leaseDto.newRental.description = 'Fully Paid';
+        self.leaseDto.newRental.amount = self.leaseDto.lease.monthlyRent;
+    }
+
     self.getLeaseAndRelatedRental = function () {
         console.log("LeaseInfoController for lease " + $routeParams.leaseId);
         LeaseService.leaseAndRelatedRental($routeParams.leaseId)
@@ -13,6 +31,11 @@ app.controller('LeaseInfoController', ['LeaseService', '$routeParams', function 
 
     self.addNewRentalPayment = function () {
         console.log("add new rental paymnet");
+        LeaseService.addNewRentalPayment(self.leaseDto)
+            .then(function (result) {
+                self.leaseDto = result.data;
+                self.showNewRental = false;
+            })
     }
 
 

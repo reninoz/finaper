@@ -17,6 +17,14 @@ app.service('LeaseService', ['$http', function ($http) {
                     });
         };
 
+        self.addNewRentalPayment = function (leaseDto) {
+            console.log('call addNewRentalPayment');
+            return $http.post('/lease/addRentalPayment', leaseDto)
+                .then(function (response) {
+                    return response;
+                });
+        };
+
     }
     ]
 );
