@@ -22,6 +22,7 @@ public class Lease extends AbstractEntity {
     private Property property;
 
     private double bound;
+    private double weeklyRent;
     private double monthlyRent;
     private boolean internetIncluded = true;
     private boolean billIncluded = false;
@@ -33,6 +34,14 @@ public class Lease extends AbstractEntity {
     private Lookup leaseLookup;
 
     public Lease() {
+    }
+
+    public double getWeeklyRent() {
+        return weeklyRent;
+    }
+
+    public void setWeeklyRent(double weeklyRent) {
+        this.weeklyRent = weeklyRent;
     }
 
     public String getTitle() {

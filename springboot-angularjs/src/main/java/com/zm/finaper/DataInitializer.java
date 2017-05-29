@@ -130,7 +130,8 @@ public class DataInitializer {
             lease.setStartDate(DateUtil.addDays(today, -120));
             lease.setEndDate(DateUtil.addDays(today, 60));
             lease.setProperty(p);
-            lease.setMonthlyRent(500);
+            lease.setWeeklyRent(150 + 5*i);
+            lease.setMonthlyRent(600 + 20*1);
 //            lease.setLeaseType("Share");
             lease.setLeaseLookup(shareLooku);
             session.persist(lease);
