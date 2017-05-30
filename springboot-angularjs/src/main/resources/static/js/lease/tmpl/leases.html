@@ -22,7 +22,7 @@
                         <tbody>
                         <tr ng-repeat="lease in leaseCtrl.allLease.slice(((leaseCtrl.currentPage-1)*leaseCtrl.itemsPerPage), 
                         ((leaseCtrl.currentPage)*leaseCtrl.itemsPerPage))">
-                            <td><a href="#/lease/{{lease.id}}">{{lease.title}}</a></td>
+                            <td><a ng-href="#/lease/{{lease.id}}">{{lease.title}}</a></td>
                             <td>{{lease.leaseLookup.description}}</td>
                             <td>{{lease.startDate | date: 'dd-MMM-yyyy'}}</td>
                             <td>{{lease.endDate | date: 'dd-MMM-yyyy'}}</td>
