@@ -1,4 +1,5 @@
-app.controller('LeaseInfoController', ['LeaseService', '$routeParams', function (LeaseService, $routeParams) {
+app.controller('LeaseInfoController', [ '$routeParams','LeaseService','CalendarService',
+    function ($routeParams,LeaseService, CalendarService ) {
     var self = this;
 
     self.showNewRental = false;
@@ -39,17 +40,15 @@ app.controller('LeaseInfoController', ['LeaseService', '$routeParams', function 
     }
 
 
-    self.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    self.format = self.formats[0];
-    self.altInputFormats = ['M!/d!/yyyy'];
+        self.inlineOptions = CalendarService.inlineOptions;
 
-    self.dateOptions = {
-        // dateDisabled: disabled,
-        formatYear: 'yy',
-        maxDate: new Date(2020, 5, 22),
-//        minDate: new Date(),
-        startingDay: 1
-    };
+        self.dateOptions = CalendarService.dateOptions;
+
+        self.formats = CalendarService.formats;
+        self.format = CalendarService.format;
+        self.altInputFormats = CalendarService.altInputFormats;
+
+        self.dateOptions = CalendarService.dateOptions;
 
     self.newRentalDatePaidPopup = {
         opened: false
